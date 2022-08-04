@@ -56,6 +56,8 @@ function flipBlock(selectedBlock)
   if (allFlippedBlocks.length === 2){
     //console.log('Two Flipped Blocks Selected')
     stopClicking()
+
+    checkMatchedBlocks(allFlippedBlocks[0], allFlippedBlocks[1]);
   }
 }
 //Stop Clicking Function
@@ -66,6 +68,27 @@ function stopClicking(){
   setTimeout(() =>{
     blockContainer.classList.remove('no-clicking')
   }, duration)
+}
+
+function checkMatchedBlocks(firstBlock, secondBlock) {
+  let triesElement = document.querySelector('.tries span')
+
+  if (firstBlock.dataset.animal === secondBlock.dataset.animal){
+    firstBlock.classList.remove('is-flipped')
+    secondBlock.classList.remove('is-flipped')
+
+    firstBlock.classList.add('has-match')
+    secondBlock.classList.add('has-match')
+  }else {
+    triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
+
+    setTimeout(() =>{
+      firstBlock.classList.remove('is-flipped')
+      secondBlock.classList.remove('is-flipped')
+    }, duration)
+
+
+  }
 }
 function shuffle(array) {
   let current = array.length,

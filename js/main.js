@@ -54,8 +54,18 @@ function flipBlock(selectedBlock)
   let allFlippedBlocks = blocks.filter(flippedBlock => flippedBlock.classList.contains('is-flipped'))
 
   if (allFlippedBlocks.length === 2){
-    console.log('Two Flipped Blocks Selected')
+    //console.log('Two Flipped Blocks Selected')
+    stopClicking()
   }
+}
+//Stop Clicking Function
+function stopClicking(){
+  //Add Class No Clicking No Main Container
+  blockContainer.classList.add('no-clicking');
+
+  setTimeout(() =>{
+    blockContainer.classList.remove('no-clicking')
+  }, duration)
 }
 function shuffle(array) {
   let current = array.length,

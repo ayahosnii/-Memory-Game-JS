@@ -23,20 +23,41 @@ console.log(blocks.length)
 //let orderRange = [...Array(blocks.length).keys()]
 let orderRange = Array.from(Array(blocks.length).keys())
 
-console.log(orderRange)
-shuffel(orderRange)
-console.log(orderRange)
+//console.log(orderRange)
+shuffle(orderRange)
+//console.log(orderRange)
 
 
-//Add CSS Property To Game Blocks
-
+// Add Order Css Property To Game Blocks
 blocks.forEach((block, index) => {
 
-  block.style.order = orderRange[index]
+  // Add CSS Order Property
+  block.style.order = orderRange[index];
 
-})
+  // Add Click Event
+  block.addEventListener('click', function () {
 
-function shuffel(array) {
+    // Trigger The Flip Block Function
+    flipBlock(block);
+
+  });
+
+});
+
+//Flip Block Function
+function flipBlock(selectedBlock)
+{
+  //Add Class is-flipped
+  selectedBlock.classList.add('is-flipped')
+
+  //Collect all flipped card
+  let allFlippedBlocks = blocks.filter(flippedBlock => flippedBlock.classList.contains('is-flipped'))
+
+  if (allFlippedBlocks.length === 2){
+    console.log('Two Flipped Blocks Selected')
+  }
+}
+function shuffle(array) {
   let current = array.length,
     temp,
     random;
